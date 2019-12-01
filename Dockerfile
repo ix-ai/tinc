@@ -5,15 +5,15 @@ COPY init.sh /init.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY peer.sh /usr/local/bin/peer.sh
 
-RUN chmod 755 /init.sh && \
-    chmod 755 /entrypoint.sh && \
-    chmod 755 /usr/local/bin/peer.sh && \
-    mkdir -p /etc/tinc && \
-    echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends -t experimental tinc && \
-    apt-get install -y --no-install-recommends iptables && \
-    rm -rf /var/lib/apt/lists/*
+RUN /bin/chmod 755 /init.sh && \
+    /bin/chmod 755 /entrypoint.sh && \
+    /bin/chmod 755 /usr/local/bin/peer.sh && \
+    /bin/mkdir -p /etc/tinc && \
+    /bin/echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list && \
+    /usr/bin/apt-get update && \
+    /usr/bin/apt-get install -y --no-install-recommends -t experimental tinc && \
+    /usr/bin/apt-get install -y --no-install-recommends iptables && \
+    /bin/rm -rf /var/lib/apt/lists/*
 
 VOLUME /etc/tinc
 
