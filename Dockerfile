@@ -13,7 +13,7 @@ RUN /bin/chmod 755 /init.sh && \
     /usr/bin/apt-get update && \
     /usr/bin/apt-get install -y --no-install-recommends -t experimental tinc && \
     /usr/bin/apt-get install -y --no-install-recommends iptables sudo && \
-    /bin/rm -rf /var/lib/apt/lists/*
+    /bin/rm -rf /var/lib/apt/lists/* && \
     /usr/sbin/useradd --comment 'tinc VPN' --no-create-home --user-group -s /bin/nologin tinc && \
     /bin/chown tinc:tinc /etc/tinc
 
