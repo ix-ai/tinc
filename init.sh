@@ -11,9 +11,7 @@ function _init_tinc() {
   fi
 
   export NETNAME="${NETNAME:-tinc-network}"
-  export ADDRESS="${ADDRESS:-10.0.0.1}"
-  export NETMASK="${NETMASK:-255.255.255.0}"
-  export NETWORK="${NETWORK:-10.0.0.0/24}"
+  export ADDRESS="${ADDRESS:-10.0.0.1/24}"
   export RUNMODE="${RUNMODE:-server}"
   export VERBOSE="${VERBOSE:-0}"
 
@@ -22,8 +20,6 @@ function _init_tinc() {
   echo "IP_ADDR: ${IP_ADDR}"
   echo "NETNAME: ${NETNAME}"
   echo "ADDRESS: ${ADDRESS}"
-  echo "NETMASK: ${NETMASK}"
-  echo "NETWORK: ${NETWORK}"
   echo "RUNMODE: ${RUNMODE}"
   echo "VERBOSE: ${VERBOSE}"
   echo "---------------------------"
@@ -39,17 +35,16 @@ _EOF_
 #!/bin/sh
 ip link set \$INTERFACE up
 ip addr add ${ADDRESS} dev \$INTERFACE
-ip route add ${NETWORK} dev \$INTERFACE
 _EOF_
 
   cat > "/etc/tinc/${NETNAME}/tinc-down" <<_EOF_
 #!/bin/sh
-ip route del ${NETWORK} dev \$INTERFACE
 ip addr del ${ADDRESS} dev \$INTERFACE
 ip link set \$INTERFACE down
 _EOF_
 
   chmod +x "/etc/tinc/${NETNAME}/tinc-up" "/etc/tinc/${NETNAME}/tinc-down"
+  chown -R tinc:tinc /etc/tinc
 }
 
 if [ -f "/etc/tinc/${NETNAME}/hosts/server" ]; then
