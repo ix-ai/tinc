@@ -37,13 +37,7 @@ ip link set \$INTERFACE up
 ip addr add ${ADDRESS} dev \$INTERFACE
 _EOF_
 
-  cat > "/etc/tinc/${NETNAME}/tinc-down" <<_EOF_
-#!/bin/sh
-ip addr del ${ADDRESS} dev \$INTERFACE
-ip link set \$INTERFACE down
-_EOF_
-
-  chmod +x "/etc/tinc/${NETNAME}/tinc-up" "/etc/tinc/${NETNAME}/tinc-down"
+  chmod +x "/etc/tinc/${NETNAME}/tinc-up"
   chown -R tinc:tinc /etc/tinc
 }
 
