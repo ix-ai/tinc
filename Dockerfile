@@ -5,6 +5,7 @@ COPY init.sh /init.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY peer.sh /usr/local/bin/peer.sh
 
+SHELL ["/bin/bash", "-c"]
 RUN /bin/chmod 755 /init.sh && \
     /bin/chmod 755 /entrypoint.sh && \
     /bin/chmod 755 /usr/local/bin/peer.sh && \
