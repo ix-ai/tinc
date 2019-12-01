@@ -2,7 +2,7 @@
 
 set -e
 
-. /init.sh
+. init.sh
 
 if [ ! -c /dev/net/tun ]; then
     mkdir -p /dev/net
