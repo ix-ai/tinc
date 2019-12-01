@@ -10,10 +10,10 @@ if [ ! -c /dev/net/tun ]; then
 fi
 
 if [ "${RUNMODE}" = "server" ]; then
-    iptables -t nat -A POSTROUTING -s ${NETWORK} -o eth0 -j MASQUERADE
+    iptables -t nat -A POSTROUTING -s "${NETWORK}" -o eth0 -j MASQUERADE
 fi
 
 exec tincd --no-detach \
-           --net=${NETNAME} \
-           --debug=${VERBOSE} \
+           --net="${NETNAME}" \
+           --debug="${VERBOSE}" \
            "$@"

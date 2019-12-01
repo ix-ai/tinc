@@ -10,7 +10,7 @@ PEER_ADDR=${2:?peer addr is empty}
 if [ -f "/etc/tinc/${NETNAME}/hosts/${PEER_NAME}" ]; then
     echo 'Peer name was taken!'
     exit 1
-elif fgrep -qr ${PEER_ADDR} "/etc/tinc/${NETNAME}/hosts/"
+elif grep -F -qr ${PEER_ADDR} "/etc/tinc/${NETNAME}/hosts/"
 then
     echo 'Peer addr was taken!'
     exit 2
@@ -34,7 +34,7 @@ cat > "hosts/${PEER_NAME}" <<_EOF_
 Subnet = ${PEER_ADDR}
 _EOF_
 
-tincd -c. -K${KEYSIZE} < /dev/null
+tincd -c. -K"${KEYSIZE}" < /dev/null
 
 cp "/etc/tinc/${NETNAME}/peers/${PEER_NAME}/tinc/${NETNAME}/hosts/${PEER_NAME}" \
    "/etc/tinc/${NETNAME}/hosts/${PEER_NAME}"
@@ -69,8 +69,8 @@ _EOF_
 
 chmod +x tinc-up tinc-down hosts/server-up hosts/server-down
 
-cd /etc/tinc/${NETNAME}/peers
-tar czf ${PEER_NAME}.tar.gz ${PEER_NAME}
-rm -rf ${PEER_NAME}
+cd "/etc/tinc/${NETNAME}/peers"
+tar czf "${PEER_NAME}.tar.gz" "${PEER_NAME}"
+rm -rf "${PEER_NAME}"
 
 echo "'${PEER_NAME}' => '${PWD}/${PEER_NAME}.tar.gz'"
