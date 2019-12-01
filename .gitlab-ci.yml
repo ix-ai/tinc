@@ -4,4 +4,4 @@ variables:
   DOCKERHUB_REPO_NAME: tinc
 
 include:
-  - remote: https://gitlab.com/ix.ai/ci-templates/raw/master/common.yml
+  - remote: https://gitlab.com/ix.ai/ci-templates/raw/master/bash-project.yml
