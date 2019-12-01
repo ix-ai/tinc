@@ -12,6 +12,28 @@ else
   echo 'Initializing...'
 fi
 
+if [ -z "${IP_ADDR}" ]; then
+  echo "IP_ADDR not set. Exiting."
+fi
+
+export NETNAME="${NETNAME:-tinc-network}"
+export ADDRESS="${ADDRESS:-10.0.0.1}"
+export NETMASK="${NETMASK:-255.255.255.0}"
+export NETWORK="${NETWORK:-10.0.0.0/24}"
+export RUNMODE="${RUNMODE:-server}"
+export VERBOSE="${VERBOSE:-INFO}"
+
+echo "Starting with the settings:"
+echo "---------------------------"
+echo "IP_ADDR: ${IP_ADDR}"
+echo "NETNAME: ${NETNAME}"
+echo "ADDRESS: ${ADDRESS}"
+echo "NETMASK: ${NETMASK}"
+echo "NETWORK: ${NETWORK}"
+echo "RUNMODE: ${RUNMODE}"
+echo "VERBOSE: ${VERBOSE}"
+echo "---------------------------"
+
 mkdir -p "/etc/tinc/${NETNAME}/hosts"
 
 cd "/etc/tinc/${NETNAME}"
@@ -43,4 +65,4 @@ _EOF_
 
 chmod +x tinc-up tinc-down
 
-tincd -n"${NETNAME}" -K"${KEYSIZE}" < /dev/null
+tinc -n "${NETNAME}" init server
