@@ -43,4 +43,4 @@ _EOF_
 
 chmod +x tinc-up tinc-down
 
-tincd -n${NETNAME} -K${KEYSIZE} < /dev/null
+tincd -n"${NETNAME}" -K"${KEYSIZE}" < /dev/null

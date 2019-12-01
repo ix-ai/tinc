@@ -10,7 +10,7 @@ PEER_ADDR=${2:?peer addr is empty}
 if [ -f "/etc/tinc/${NETNAME}/hosts/${PEER_NAME}" ]; then
     echo 'Peer name was taken!'
     exit 1
-elif grep -F -qr ${PEER_ADDR} "/etc/tinc/${NETNAME}/hosts/"
+elif grep -F -qr "${PEER_ADDR}" "/etc/tinc/${NETNAME}/hosts/"
 then
     echo 'Peer addr was taken!'
     exit 2
