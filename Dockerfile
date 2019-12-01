@@ -7,7 +7,7 @@ COPY peer.sh /usr/local/bin/peer.sh
 
 RUN chmod 755 /init.sh && \
     chmod 755 /entrypoint.sh && \
-    chmod 755 /peer.sh && \
+    chmod 755 /usr/local/bin/peer.sh && \
     mkdir -p /etc/tinc && \
     echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list && \
     apt-get update && \
