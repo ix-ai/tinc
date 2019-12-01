@@ -1,7 +1,8 @@
-#!/bin/sh -e
+#!/usr/bin/env sh
 #
 # generate peer profile
 #
+set -e
 
 PEER_NAME=${1:?peer name is empty}
 PEER_ADDR=${2:?peer addr is empty}

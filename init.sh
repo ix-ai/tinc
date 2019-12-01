@@ -1,7 +1,9 @@
-#!/bin/sh -e
+#!/usr/bin/env sh
 #
 # initialize server profile
 #
+
+set -e
 
 if [ -f "/etc/tinc/${NETNAME}/hosts/server" ]; then
   echo 'Initialized!'
