@@ -10,11 +10,6 @@ function _init_tinc() {
     echo "IP_ADDR not set. Exiting."
   fi
 
-  export NETNAME="${NETNAME:-tinc-network}"
-  export ADDRESS="${ADDRESS:-10.0.0.1/24}"
-  export RUNMODE="${RUNMODE:-server}"
-  export VERBOSE="${VERBOSE:-0}"
-
   echo "Initializing with the settings:"
   echo "---------------------------"
   echo "IP_ADDR: ${IP_ADDR}"
@@ -41,10 +36,14 @@ _EOF_
   chown -R tinc:tinc /etc/tinc
 }
 
+export NETNAME="${NETNAME:-tinc-network}"
+export ADDRESS="${ADDRESS:-10.0.0.1/24}"
+export RUNMODE="${RUNMODE:-server}"
+export VERBOSE="${VERBOSE:-0}"
+
 if [ -f "/etc/tinc/${NETNAME}/hosts/server" ]; then
   echo 'Initialized!'
 else
-  ls -lashi "/etc/tinc/${NETNAME}/hosts/server" || true
   echo 'Initializing...'
   _init_tinc
 fi
