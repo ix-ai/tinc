@@ -5,10 +5,9 @@ COPY init.sh /init.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY peer.sh /usr/local/bin/peer.sh
 
-SHELL ["/bin/bash", "-c"]
 RUN /bin/chmod 755 /init.sh && \
     /bin/chmod 755 /entrypoint.sh && \
-    /bin/chmod 755 /usr/local/bin/peer.sh && \
+    /bin/chmod 755 /usr/local/bin/peer.sh && \
     /bin/mkdir -p /etc/tinc && \
     /bin/echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list && \
     /usr/bin/apt-get update && \
