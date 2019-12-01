@@ -42,8 +42,8 @@ export RUNMODE="${RUNMODE:-server}"
 export VERBOSE="${VERBOSE:-0}"
 
 if [ -f "/etc/tinc/${NETNAME}/hosts/server" ]; then
-  echo 'Initialized!'
+  echo 'tinc is already initialized!'
 else
-  echo 'Initializing...'
+  echo 'Initializing tinc...'
   _init_tinc
 fi
