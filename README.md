@@ -37,6 +37,10 @@ services:
     restart: always
 ```
 
+### Generating client configuration
+
+[...]
+
 ## Configuration
 
 The configuration is created on the first run based on the environment variables. The keys are created on the first run as well.

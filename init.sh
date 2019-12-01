@@ -15,7 +15,7 @@ function _init_tinc() {
   export RUNMODE="${RUNMODE:-server}"
   export VERBOSE="${VERBOSE:-0}"
 
-  echo "Starting with the settings:"
+  echo "Initializing with the settings:"
   echo "---------------------------"
   echo "IP_ADDR: ${IP_ADDR}"
   echo "NETNAME: ${NETNAME}"
@@ -44,6 +44,7 @@ _EOF_
 if [ -f "/etc/tinc/${NETNAME}/hosts/server" ]; then
   echo 'Initialized!'
 else
+  ls -lashi "/etc/tinc/${NETNAME}/hosts/server" || true
   echo 'Initializing...'
   _init_tinc
 fi
