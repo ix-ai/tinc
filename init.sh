@@ -43,7 +43,7 @@ _EOF_
   chown -R tinc:tinc /etc/tinc
 }
 
-if [ -f "/etc/tinc/${NETNAME}/hosts/server" ]; then
+if [ -f "/etc/tinc/${NETNAME}/tinc.conf" ]; then
   echo 'tinc is already initialized!'
 else
   echo 'Initializing tinc...'
