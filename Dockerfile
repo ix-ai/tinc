@@ -5,6 +5,7 @@ LABEL maintainer="docker@ix.ai" \
 COPY init.sh /init.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY peer.sh /usr/local/bin/peer.sh
+COPY tinc-sudoers /etc/sudoers.d/tinc
 
 ARG NETNAME="tinc-network"
 ARG ADDRESS="10.0.0.1/24"
@@ -14,6 +15,7 @@ ARG VERBOSE="0"
 RUN /bin/chmod 755 /init.sh && \
     /bin/chmod 755 /entrypoint.sh && \
     /bin/chmod 755 /usr/local/bin/peer.sh && \
+    /bin/chmod 440 /etc/sudoers.d/tinc && \
     /bin/mkdir -p /etc/tinc && \
     /bin/echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list && \
     /usr/bin/apt-get update && \

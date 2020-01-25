@@ -53,30 +53,30 @@ cp "/etc/tinc/${NETNAME}/peers/${PEER_NAME}/tinc/${NETNAME}/hosts/${PEER_NAME}" 
 
 cat > tinc-up <<_EOF_
 #!/bin/sh
-ip link set \$INTERFACE up
-ip addr add  ${PEER_ADDR} dev \$INTERFACE
+sudo /sbin/ip link set \$INTERFACE up
+sudo /sbin/ip addr add  ${PEER_ADDR} dev \$INTERFACE
 _EOF_
 
 cat > tinc-down <<_EOF_
 #!/bin/sh
-ip addr del ${PEER_ADDR} dev \$INTERFACE
-ip link set \$INTERFACE down
+sudo /sbin/ip addr del ${PEER_ADDR} dev \$INTERFACE
+sudo /sbin/ip link set \$INTERFACE down
 _EOF_
 
 cat > hosts/server-up <<"_EOF_"
 #!/bin/sh
-ORIGINAL_GATEWAY=$(ip route show | grep ^default | cut -d ' ' -f 2-3)
-ip route add $REMOTEADDRESS $ORIGINAL_GATEWAY
-ip route add 0.0.0.0/1 dev $INTERFACE
-ip route add 128.0.0.0/1 dev $INTERFACE
+ORIGINAL_GATEWAY=$(/sbin/ip route show | grep ^default | cut -d ' ' -f 2-3)
+sudo /sbin/ip route add $REMOTEADDRESS $ORIGINAL_GATEWAY
+sudo /sbin/ip route add 0.0.0.0/1 dev $INTERFACE
+sudo /sbin/ip route add 128.0.0.0/1 dev $INTERFACE
 _EOF_
 
 cat > hosts/server-down <<"_EOF_"
 #!/bin/sh
-ORIGINAL_GATEWAY=$(ip route show | grep ^default | cut -d ' ' -f 2-3)
-ip route del $REMOTEADDRESS $ORIGINAL_GATEWAY
-ip route del 0.0.0.0/1 dev $INTERFACE
-ip route del 128.0.0.0/1 dev $INTERFACE
+ORIGINAL_GATEWAY=$(/sbin/ip route show | grep ^default | cut -d ' ' -f 2-3)
+sudo /sbin/ip route del $REMOTEADDRESS $ORIGINAL_GATEWAY
+sudo /sbin/ip route del 0.0.0.0/1 dev $INTERFACE
+sudo /sbin/ip route del 128.0.0.0/1 dev $INTERFACE
 _EOF_
 
 chmod +x tinc-up tinc-down hosts/server-up hosts/server-down

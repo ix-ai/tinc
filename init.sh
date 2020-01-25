@@ -39,8 +39,8 @@ _EOF_
 
   cat > "/etc/tinc/${NETNAME}/tinc-up" <<_EOF_
 #!/bin/sh
-ip link set \$INTERFACE up
-ip addr add ${ADDRESS} dev \$INTERFACE
+sudo /sbin/ip link set \$INTERFACE up
+sudo /sbin/ip addr add ${ADDRESS} dev \$INTERFACE
 _EOF_
 
   chmod +x "/etc/tinc/${NETNAME}/tinc-up"
