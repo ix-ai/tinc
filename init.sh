@@ -4,6 +4,9 @@
 #
 
 set -e
+if [ ! "${VERBOSE}" = "0" ]; then
+  set -x
+fi
 
 function _init_tinc() {
   if [ -z "${IP_ADDR}" ]; then

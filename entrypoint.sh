@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-set -xe
+set -e
+
+if [ ! "${VERBOSE}" = "0" ]; then
+  set -x
+fi
 
 . init.sh
 
