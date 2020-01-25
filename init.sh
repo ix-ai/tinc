@@ -24,6 +24,10 @@ function _init_tinc() {
 
   tinc -n "${NETNAME}" init server
 
+  cat >> "/etc/tinc/${NETNAME}/hosts/server" <<_EOF_
+Address = ${IP_ADDR}
+_EOF_
+
   cat > "/etc/tinc/${NETNAME}/tinc.conf" <<_EOF_
 Name = server
 Interface = tun0
