@@ -5,6 +5,11 @@ COPY init.sh /init.sh
 COPY entrypoint.sh /entrypoint.sh
 COPY peer.sh /usr/local/bin/peer.sh
 
+ARG NETNAME="tinc-network"
+ARG ADDRESS="10.0.0.1/24"
+ARG RUNMODE="server"
+ARG VERBOSE="0"
+
 RUN /bin/chmod 755 /init.sh && \
     /bin/chmod 755 /entrypoint.sh && \
     /bin/chmod 755 /usr/local/bin/peer.sh && \
@@ -18,6 +23,11 @@ RUN /bin/chmod 755 /init.sh && \
     /bin/chown tinc:tinc /etc/tinc
 
 VOLUME /etc/tinc
+
+ENV NETNAME ${NETNAME}
+ENV ADDRESS ${ADDRESS}
+ENV RUNMODE ${RUNMODE}
+ENV VERBOSE ${VERBOSE}
 
 EXPOSE 655/tcp 655/udp
 

@@ -36,11 +36,6 @@ _EOF_
   chown -R tinc:tinc /etc/tinc
 }
 
-export NETNAME="${NETNAME:-tinc-network}"
-export ADDRESS="${ADDRESS:-10.0.0.1/24}"
-export RUNMODE="${RUNMODE:-server}"
-export VERBOSE="${VERBOSE:-0}"
-
 if [ -f "/etc/tinc/${NETNAME}/hosts/server" ]; then
   echo 'tinc is already initialized!'
 else
