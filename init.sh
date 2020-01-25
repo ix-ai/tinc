@@ -18,29 +18,27 @@ function _init_tinc() {
   echo "IP_ADDR: ${IP_ADDR}"
   echo "NETNAME: ${NETNAME}"
   echo "ADDRESS: ${ADDRESS}"
-  if [ -n "${SUBNET}" ]; then
-    echo "SUBNET: ${SUBNET}"
-  fi
+  echo "SUBNET_BITS: ${SUBNET_BITS}"
   echo "RUNMODE: ${RUNMODE}"
   echo "VERBOSE: ${VERBOSE}"
   echo "---------------------------"
 
-  tinc -n "${NETNAME}" init server
+  tinc -n "${NETNAME}" init ${SERVER_NAME}
 
-  cat >> "/etc/tinc/${NETNAME}/hosts/server" <<_EOF_
+  cat >> "/etc/tinc/${NETNAME}/hosts/${SERVER_NAME}" <<_EOF_
 Address = ${IP_ADDR}
 Digest = sha512
 _EOF_
 
   cat > "/etc/tinc/${NETNAME}/tinc.conf" <<_EOF_
-Name = server
+Name = ${SERVER_NAME}
 Interface = tun0
 _EOF_
 
   cat > "/etc/tinc/${NETNAME}/tinc-up" <<_EOF_
 #!/bin/sh
 sudo /sbin/ip link set \$INTERFACE up
-sudo /sbin/ip addr add ${ADDRESS} dev \$INTERFACE
+sudo /sbin/ip addr add ${ADDRESS}/${SUBNET_BITS} dev \$INTERFACE
 _EOF_
 
   chmod +x "/etc/tinc/${NETNAME}/tinc-up"

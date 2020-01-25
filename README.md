@@ -52,11 +52,11 @@ The configuration is created on the first run based on the environment variables
 | `IP_ADDR`     | -               | *Mandatory if `RUNMODE` is `server`.* The IP address to which the clients should connect |
 | `NETNAME`     | `tinc-network`  | The name of the network |
 | `ADDRESS`     | `10.0.0.1`      | The IP address of this node in `NETNAME` |
-| `NETMASK`     | `255.255.255.0` | The netmask of this node in `NETNAME` |
-| `NETWORK`     | `10.0.0.0/24`   | The network address in `NETNAME` |
-| `SUBNET`      | -               | If set, when Initializing the server, this will be set as `Subnet` for this host in the configuration. See [4.4.2 Host configuration variables](https://www.tinc-vpn.org/documentation-1.1/Host-configuration-variables.html) for details |
+| `SUBNET_BITS` | `24`            | The netmask in bits of this node in `NETNAME` |
+| `SERVER_NAME` | `server`        | The identifier for this uninitialised node in `NETNAME` |
 | `RUNMODE`     | `server`        | If not running as a server, set this to anything else. This option switches on MASQUERADE for outgoing trafic. |
 | `VERBOSE`     | `0`             | See [tinc debug levels](https://www.tinc-vpn.org/documentation/Debug-levels.html) |
+
 
 ## Resources:
 * GitLab: https://gitlab.com/ix.ai/tinc
