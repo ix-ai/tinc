@@ -59,6 +59,7 @@ The configuration is created on the first run based on the environment variables
 
 ## Resources:
 * GitLab: https://gitlab.com/ix.ai/tinc
+* GitHub: https://github.com/ix-ai/tinc
 * Docker Hub: https://hub.docker.com/r/ixdotai/tinc
 
 ## Credits
