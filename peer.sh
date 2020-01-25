@@ -10,6 +10,7 @@ fi
 
 PEER_NAME=${1:?peer name is empty}
 PEER_ADDR=${2:?peer addr is empty}
+PEER_REMOTE_IP=${3}
 
 if [ -f "/etc/tinc/${NETNAME}/hosts/${PEER_NAME}" ]; then
     echo 'Peer name was taken!'
@@ -36,7 +37,14 @@ _EOF_
 
 cat > "hosts/${PEER_NAME}" <<_EOF_
 Subnet = ${PEER_ADDR}
+Digest = sha512
 _EOF_
+
+if [ ! -z "${PEER_REMOTE_IP}" ]; then
+  cat > "hosts/${PEER_NAME}" <<_EOF_
+Address = ${PEER_REMOTE_IP}
+_EOF_
+fi
 
 tinc -c . -b generate-keys < /dev/null
 

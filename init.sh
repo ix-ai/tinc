@@ -18,6 +18,9 @@ function _init_tinc() {
   echo "IP_ADDR: ${IP_ADDR}"
   echo "NETNAME: ${NETNAME}"
   echo "ADDRESS: ${ADDRESS}"
+  if [ ! -z "${SUBNET}" ]; then
+    echo "SUBNET: ${SUBNET}"
+  fi
   echo "RUNMODE: ${RUNMODE}"
   echo "VERBOSE: ${VERBOSE}"
   echo "---------------------------"
@@ -26,6 +29,7 @@ function _init_tinc() {
 
   cat >> "/etc/tinc/${NETNAME}/hosts/server" <<_EOF_
 Address = ${IP_ADDR}
+Digest = sha512
 _EOF_
 
   cat > "/etc/tinc/${NETNAME}/tinc.conf" <<_EOF_

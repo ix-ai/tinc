@@ -54,7 +54,8 @@ The configuration is created on the first run based on the environment variables
 | `ADDRESS`     | `10.0.0.1`      | The IP address of this node in `NETNAME` |
 | `NETMASK`     | `255.255.255.0` | The netmask of this node in `NETNAME` |
 | `NETWORK`     | `10.0.0.0/24`   | The network address in `NETNAME` |
-| `RUNMODE`     | `server`        | If not running as a server, set this to anything else |
+| `SUBNET`      | -               | If set, when Initializing the server, this will be set as `Subnet` for this host in the configuration. See [4.4.2 Host configuration variables](https://www.tinc-vpn.org/documentation-1.1/Host-configuration-variables.html) for details |
+| `RUNMODE`     | `server`        | If not running as a server, set this to anything else. This option switches on MASQUERADE for outgoing trafic. |
 | `VERBOSE`     | `0`             | See [tinc debug levels](https://www.tinc-vpn.org/documentation/Debug-levels.html) |
 
 ## Resources:
