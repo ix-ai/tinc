@@ -23,7 +23,7 @@ function _init_tinc() {
   echo "VERBOSE: ${VERBOSE}"
   echo "---------------------------"
 
-  tinc -n "${NETNAME}" init ${SERVER_NAME}
+  tinc -n "${NETNAME}" init "${SERVER_NAME}"
 
   cat >> "/etc/tinc/${NETNAME}/hosts/${SERVER_NAME}" <<_EOF_
 Address = ${IP_ADDR}
