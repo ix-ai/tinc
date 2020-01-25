@@ -4,6 +4,10 @@
 #
 set -e
 
+if [ ! "${VERBOSE}" = "0" ]; then
+  set -x
+fi
+
 PEER_NAME=${1:?peer name is empty}
 PEER_ADDR=${2:?peer addr is empty}
 
@@ -34,7 +38,7 @@ cat > "hosts/${PEER_NAME}" <<_EOF_
 Subnet = ${PEER_ADDR}
 _EOF_
 
-tincd -c. -K"${KEYSIZE}" < /dev/null
+tinc -c . -b generate-keys < /dev/null
 
 cp "/etc/tinc/${NETNAME}/peers/${PEER_NAME}/tinc/${NETNAME}/hosts/${PEER_NAME}" \
    "/etc/tinc/${NETNAME}/hosts/${PEER_NAME}"
