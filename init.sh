@@ -18,7 +18,7 @@ function _init_tinc() {
   echo "IP_ADDR: ${IP_ADDR}"
   echo "NETNAME: ${NETNAME}"
   echo "ADDRESS: ${ADDRESS}"
-  if [ ! -z "${SUBNET}" ]; then
+  if [ -n "${SUBNET}" ]; then
     echo "SUBNET: ${SUBNET}"
   fi
   echo "RUNMODE: ${RUNMODE}"

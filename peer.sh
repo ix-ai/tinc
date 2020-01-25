@@ -40,7 +40,7 @@ Subnet = ${PEER_ADDR}
 Digest = sha512
 _EOF_
 
-if [ ! -z "${PEER_REMOTE_IP}" ]; then
+if [ -n "${PEER_REMOTE_IP}" ]; then
   cat > "hosts/${PEER_NAME}" <<_EOF_
 Address = ${PEER_REMOTE_IP}
 _EOF_
