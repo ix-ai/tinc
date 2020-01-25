@@ -1,5 +1,6 @@
 FROM debian:buster
-LABEL maintainer="docker@ix.ai"
+LABEL maintainer="docker@ix.ai" \
+      ai.ix.repository="ix.ai/tinc"
 
 COPY init.sh /init.sh
 COPY entrypoint.sh /entrypoint.sh
