@@ -14,7 +14,7 @@ if [ ! -c /dev/net/tun ]; then
 fi
 
 if [ "${RUNMODE}" = "server" ]; then
-    iptables -t nat -A POSTROUTING -s "${ADDRESS}" -o eth0 -j MASQUERADE
+    iptables -t nat -A POSTROUTING -s "${ADDRESS}/${SUBNET_BITS}" -o eth0 -j MASQUERADE
 fi
 
 set -x

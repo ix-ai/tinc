@@ -54,12 +54,12 @@ cp "/etc/tinc/${NETNAME}/peers/${PEER_NAME}/tinc/${NETNAME}/hosts/${PEER_NAME}" 
 cat > tinc-up <<_EOF_
 #!/bin/sh
 sudo /sbin/ip link set \$INTERFACE up
-sudo /sbin/ip addr add ${PEER_ADDR} dev \$INTERFACE
+sudo /sbin/ip addr add ${PEER_ADDR}/${SUBNET_BITS} dev \$INTERFACE
 _EOF_
 
 cat > tinc-down <<_EOF_
 #!/bin/sh
-sudo /sbin/ip addr del ${PEER_ADDR} dev \$INTERFACE
+sudo /sbin/ip addr del ${PEER_ADDR}/${SUBNET_BITS} dev \$INTERFACE
 sudo /sbin/ip link set \$INTERFACE down
 _EOF_
 
