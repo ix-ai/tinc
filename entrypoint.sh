@@ -13,9 +13,9 @@ if [ ! -c /dev/net/tun ]; then
     mknod /dev/net/tun c 10 200
 fi
 
-if [ "${RUNMODE}" = "server" ]; then
-    iptables -t nat -A POSTROUTING -s "${ADDRESS}/${SUBNET_BITS}" -o eth0 -j MASQUERADE
-fi
+iptables -t nat -C POSTROUTING -s "${ADDRESS}/${SUBNET_BITS}" -o "${NATDEV}" -j MASQUERADE || {
+  iptables -t nat -A POSTROUTING -s "${ADDRESS}/${SUBNET_BITS}" -o "${NATDEV}" -j MASQUERADE
+}
 
 set -x
 

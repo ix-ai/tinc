@@ -13,6 +13,7 @@ ARG SUBNET_BITS="24"
 ARG SERVER_NAME="server"
 ARG RUNMODE="server"
 ARG VERBOSE="0"
+ARG NATDEV="eth0"
 
 RUN /bin/chmod 755 /init.sh && \
     /bin/chmod 755 /entrypoint.sh && \
@@ -35,6 +36,7 @@ ENV SUBNET_BITS ${SUBNET_BITS}
 ENV SERVER_NAME ${SERVER_NAME}
 ENV RUNMODE ${RUNMODE}
 ENV VERBOSE ${VERBOSE}
+ENV NATDEV ${NATDEV}
 
 EXPOSE 655/tcp 655/udp
 

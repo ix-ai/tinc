@@ -33,12 +33,20 @@ _EOF_
   cat > "/etc/tinc/${NETNAME}/tinc.conf" <<_EOF_
 Name = ${SERVER_NAME}
 Interface = tun0
+AddressFamily = any
+Mode = switch
+ReplayWindow = 64
+LocalDiscovery = no
+ExperimentalProtocol = yes
 _EOF_
 
   cat > "/etc/tinc/${NETNAME}/tinc-up" <<_EOF_
-#!/bin/sh
+#!/usr/bin/env sh
 sudo /sbin/ip link set \$INTERFACE up
 sudo /sbin/ip addr add ${ADDRESS}/${SUBNET_BITS} dev \$INTERFACE
+for RP_FILTER in /proc/sys/net/ipv4/conf/*/rp_filter; do
+  echo '0' | sudo tee -a ${RP_FILTER} > /dev/null
+done;
 _EOF_
 
   chmod +x "/etc/tinc/${NETNAME}/tinc-up"

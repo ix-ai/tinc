@@ -56,6 +56,8 @@ The configuration is created on the first run based on the environment variables
 | `SERVER_NAME` | `server`        | The identifier for this uninitialised node in `NETNAME` |
 | `RUNMODE`     | `server`        | If not running as a server, set this to anything else. This option switches on MASQUERADE for outgoing trafic. |
 | `VERBOSE`     | `0`             | See [tinc debug levels](https://www.tinc-vpn.org/documentation/Debug-levels.html) |
+| `NATDEV`      | `eth0`          | In case your default gateway in the server isn't on eth0, use this to change it |
+| `ROUTES`      | -               | If you want to add additional routes |
 
 
 ## Resources:

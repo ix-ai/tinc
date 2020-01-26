@@ -33,6 +33,11 @@ cat > tinc.conf <<_EOF_
 Name = ${PEER_NAME}
 Interface = tun0
 ConnectTo = ${SERVER_NAME}
+AddressFamily = any
+Mode = switch
+ReplayWindow = 64
+LocalDiscovery = no
+ExperimentalProtocol = yes
 _EOF_
 
 cat > "hosts/${PEER_NAME}" <<_EOF_
@@ -53,8 +58,11 @@ cp "/etc/tinc/${NETNAME}/peers/${PEER_NAME}/tinc/${NETNAME}/hosts/${PEER_NAME}" 
 
 cat > tinc-up <<_EOF_
 #!/bin/sh
-sudo /sbin/ip link set \$INTERFACE up
+sudo /sbin/ip link set \$INTERFACE up mtu 8500 txqueuelen 1000
 sudo /sbin/ip addr add ${PEER_ADDR}/${SUBNET_BITS} dev \$INTERFACE
+for RP_FILTER in /proc/sys/net/ipv4/conf/*/rp_filter; do
+  echo '0' | sudo tee -a ${RP_FILTER} > /dev/null
+done;
 _EOF_
 
 cat > tinc-down <<_EOF_
