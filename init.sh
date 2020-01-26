@@ -11,6 +11,7 @@ fi
 function _init_tinc() {
   if [ -z "${IP_ADDR}" ]; then
     echo "IP_ADDR not set. Exiting."
+    exit 1
   fi
 
   echo "Initializing with the settings:"
