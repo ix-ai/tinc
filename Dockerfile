@@ -7,13 +7,13 @@ COPY entrypoint.sh /entrypoint.sh
 COPY peer.sh /usr/local/bin/peer.sh
 COPY tinc-sudoers /etc/sudoers.d/tinc
 
-ARG NETNAME="tinc-network"
-ARG ADDRESS="192.168.218.1"
-ARG SUBNET_BITS="24"
-ARG SERVER_NAME="server"
-ARG RUNMODE="server"
-ARG VERBOSE="0"
-ARG NATDEV="eth0"
+ARG NETNAME="tinc-network" \
+    ADDRESS="192.168.218.1" \
+    SUBNET_BITS="24" \
+    SERVER_NAME="server" \
+    RUNMODE="server" \
+    VERBOSE="0" \
+    NATDEV="eth0"
 
 RUN /bin/chmod 755 /init.sh && \
     /bin/chmod 755 /entrypoint.sh && \
